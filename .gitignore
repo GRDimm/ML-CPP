@@ -1,0 +1,29 @@
+# Build directories
+/build/
+/out/
+/bin/
+
+# CMake-generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Compiled object files and executables
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.dll
+*.dylib
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Windows-specific files
+Thumbs.db
