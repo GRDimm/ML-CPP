@@ -1,27 +1,6 @@
 # ML_CPP Project
 
-This project is a C++ library for basic machine learning and data manipulation, featuring modules for data handling, linear regression, and regression metrics.
-
-## Project Structure
-
-```
-.
-|-- CMakeLists.txt         # CMake build configuration
-|-- LICENSE                # License for the project
-|-- README.md              # Project documentation
-|-- include/
-|   `-- L/
-|       |-- DataFrame.hpp                   # DataFrame class for CSV handling and data manipulation
-|       |-- LinearRegression.hpp            # LinearRegression class for linear regression models
-|       |-- RegressionMetrics.hpp           # RegressionMetrics class for evaluation metrics
-        `-- PrincipalComponentAnalysis.cpp  # PCA class
-`-- src/
-    |-- DataFrame.cpp                   # Implementation of the DataFrame class
-    |-- LinearRegression.cpp            # Implementation of the LinearRegression class
-    |-- RegressionMetrics.cpp           # Implementation of the RegressionMetrics class
-    |-- PrincipalComponentAnalysis.cpp  # Implementation of the PCA class
-    `-- main.cpp                        # Example usage and test of the classes
-```
+This project is a C++ library for basic machine learning and data manipulation.
 
 ## Features
 
