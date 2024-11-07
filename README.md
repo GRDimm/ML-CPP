@@ -11,14 +11,16 @@ This project is a C++ library for basic machine learning and data manipulation, 
 |-- README.md              # Project documentation
 |-- include/
 |   `-- L/
-|       |-- DataFrame.hpp          # DataFrame class for CSV handling and data manipulation
-|       |-- LinearRegression.hpp   # LinearRegression class for linear regression models
-|       `-- RegressionMetrics.hpp  # RegressionMetrics class for evaluation metrics
+|       |-- DataFrame.hpp                   # DataFrame class for CSV handling and data manipulation
+|       |-- LinearRegression.hpp            # LinearRegression class for linear regression models
+|       |-- RegressionMetrics.hpp           # RegressionMetrics class for evaluation metrics
+        `-- PrincipalComponentAnalysis.cpp  # PCA class
 `-- src/
-    |-- DataFrame.cpp              # Implementation of the DataFrame class
-    |-- LinearRegression.cpp       # Implementation of the LinearRegression class
-    |-- RegressionMetrics.cpp      # Implementation of the RegressionMetrics class
-    `-- main.cpp                   # Example usage and test of the classes
+    |-- DataFrame.cpp                   # Implementation of the DataFrame class
+    |-- LinearRegression.cpp            # Implementation of the LinearRegression class
+    |-- RegressionMetrics.cpp           # Implementation of the RegressionMetrics class
+    |-- PrincipalComponentAnalysis.cpp  # Implementation of the PCA class
+    `-- main.cpp                        # Example usage and test of the classes
 ```
 
 ## Features
@@ -46,6 +48,18 @@ This project is a C++ library for basic machine learning and data manipulation, 
   - Calculate the Mean Squared Error (MSE).
   - Calculate the Root Mean Squared Error (RMSE).
 
+### 4. PrincipalComponentAnalysis
+
+- **Description**:  
+  The `PrincipalComponentAnalysis` class is designed to perform Principal Component Analysis (PCA) on datasets.
+
+- **Current Capabilities**:
+  - **Compute Principal Components**:  
+    Calculate the principal components.
+  
+  - **Transform Data**:  
+    Project the original dataset onto the principal component space.
+
 ## Getting Started
 
 1. **Clone the repository**:
@@ -64,12 +78,12 @@ This project is a C++ library for basic machine learning and data manipulation, 
 
 3. **Run the example**:
    ```
-   ./build/executable
+   ./build/bin/executable
    ```
 
 ## Usage
 
-Example usage for each module can be found in `main.cpp`.
+Example usage be found in `main.cpp`.
 
 ## Requirements
 

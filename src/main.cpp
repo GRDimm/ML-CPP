@@ -2,6 +2,8 @@
 #include "L/DataFrame.hpp"
 #include "L/LinearRegression.hpp"
 #include "L/RegressionMetrics.hpp"
+#include "L/PrincipalComponentAnalysis.hpp"
+#include <numeric>
 
 #include <Eigen/Dense>
 
@@ -9,16 +11,28 @@ int main() {
     L::DataFrame train_df;
     L::DataFrame test_df;
 
+    const bool use_PCA = true;
+
     // Load training data
     if (!train_df.readCSV("train.csv")) {
         std::cerr << "Failed to load train.csv" << std::endl;
         return -1;
     }
 
+    train_df.printColumnNames();
+
     // Select feature columns and convert to Eigen matrix
     std::vector<std::string> feature_columns = {"Genre", "Height", "Weight"};
     L::DataFrame features_df = train_df.selectColumns(feature_columns);
     Eigen::MatrixXd X_train = features_df.toMatrix();
+
+    if(use_PCA){
+        L::PrincipalComponentAnalysis train_PCA_object = L::PrincipalComponentAnalysis(X_train);
+
+        train_PCA_object.transform();
+
+        X_train = train_PCA_object.principal_components();
+    }
 
     // Select target column and convert to Eigen vector
     L::DataFrame target_df = train_df.selectColumns({"Age"});
@@ -37,6 +51,14 @@ int main() {
     // Prepare test features and convert to Eigen matrix
     L::DataFrame test_features_df = test_df.selectColumns(feature_columns);
     Eigen::MatrixXd X_test = test_features_df.toMatrix();
+
+    if(use_PCA){
+        L::PrincipalComponentAnalysis test_PCA_object = L::PrincipalComponentAnalysis(X_test);
+
+        test_PCA_object.transform();
+
+        X_test = test_PCA_object.principal_components();
+    }
 
     // Make predictions on the test set
     Eigen::VectorXd predictions = model.predict(X_test);
@@ -62,6 +84,9 @@ int main() {
 
     L::DataFrame predictions_dataframe = L::DataFrame(predictions, "Age");
     predictions_dataframe.toCsv("predictions.csv");
+
+
+    
 
     return 0;
 }

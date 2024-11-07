@@ -64,6 +64,7 @@
         "cinttypes": "cpp",
         "typeinfo": "cpp",
         "future": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "variant": "cpp"
     }
 }
