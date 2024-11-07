@@ -60,6 +60,12 @@ This project is a C++ library for basic machine learning and data manipulation, 
   - **Transform Data**:  
     Project the original dataset onto the principal component space.
 
+### 5. LogisticRegression
+- **Description**: Logistic regression model.
+- **Current Capabilities**:
+  - Fit a logistic regression model to training data.
+  - Predict output values for test data.
+
 ## Getting Started
 
 1. **Clone the repository**:
