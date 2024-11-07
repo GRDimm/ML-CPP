@@ -3,6 +3,8 @@
 #include "L/LinearRegression.hpp"
 #include "L/RegressionMetrics.hpp"
 #include "L/PrincipalComponentAnalysis.hpp"
+#include "L/LogisticRegression.hpp"
+
 #include <numeric>
 
 #include <Eigen/Dense>
@@ -22,7 +24,8 @@ int main() {
     train_df.printColumnNames();
 
     // Select feature columns and convert to Eigen matrix
-    std::vector<std::string> feature_columns = {"Genre", "Height", "Weight"};
+    std::vector<std::string> feature_columns = {"Age", "Height", "Weight"};
+    std::string target_column = "Genre";
     L::DataFrame features_df = train_df.selectColumns(feature_columns);
     Eigen::MatrixXd X_train = features_df.toMatrix();
 
@@ -35,11 +38,11 @@ int main() {
     }
 
     // Select target column and convert to Eigen vector
-    L::DataFrame target_df = train_df.selectColumns({"Age"});
+    L::DataFrame target_df = train_df.selectColumns({target_column});
     Eigen::VectorXd y_train = target_df.toMatrix().col(0);
 
     // Train the Linear Regression model
-    L::LinearRegression model;
+    L::LogisticRegression model;
     model.fit(X_train, y_train);
 
     // Load test data
@@ -73,7 +76,7 @@ int main() {
         std::cout << "Name: " << name << ", prediction: " << predictions(i) << std::endl;
     }
 
-    Eigen::VectorXd y_true = test_df.selectColumns({"Age"}).toMatrix().col(0);
+    Eigen::VectorXd y_true = test_df.selectColumns({target_column}).toMatrix().col(0);
 
     L::RegressionMetrics metrics(predictions, y_true);
 
@@ -82,11 +85,8 @@ int main() {
     std::cout << "Mean Squared Error: " << metrics.meanSquaredError() << std::endl;
     std::cout << "Root Mean Squared Error: " << metrics.rootMeanSquaredError() << std::endl;
 
-    L::DataFrame predictions_dataframe = L::DataFrame(predictions, "Age");
+    L::DataFrame predictions_dataframe = L::DataFrame(predictions, target_column);
     predictions_dataframe.toCsv("predictions.csv");
-
-
-    
 
     return 0;
 }

@@ -36,6 +36,7 @@ add_library(L STATIC
     src/DataFrame.cpp 
     src/RegressionMetrics.cpp 
     src/PrincipalComponentAnalysis.cpp
+    src/LogisticRegression.cpp
 )
 
 # Specify include directories for the library

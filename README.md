@@ -89,3 +89,14 @@ Example usage be found in `main.cpp`.
 
 - C++17 or later
 - [Eigen library](https://eigen.tuxfamily.org/) for linear algebra operations
+
+## Being implemented next
+
+- Classification Metrics
+- Decision Trees (Pruning, Bagging)
+- Random Forest
+- K-Nearest Neighbors (KNN)
+- Support Vector Machines (SVM)
+- Naive Bayes
+- K-Means Clustering
+- Gradient Boosting (e.g., XGBoost)
