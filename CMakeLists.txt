@@ -37,6 +37,7 @@ add_library(L STATIC
     src/RegressionMetrics.cpp 
     src/PrincipalComponentAnalysis.cpp
     src/LogisticRegression.cpp
+    src/ClassificationMetrics.cpp
 )
 
 # Specify include directories for the library

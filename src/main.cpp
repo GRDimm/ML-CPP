@@ -4,6 +4,7 @@
 #include "L/RegressionMetrics.hpp"
 #include "L/PrincipalComponentAnalysis.hpp"
 #include "L/LogisticRegression.hpp"
+#include "L/ClassificationMetrics.hpp"
 
 #include <numeric>
 
@@ -45,6 +46,8 @@ int main() {
     L::LogisticRegression model;
     model.fit(X_train, y_train);
 
+    std::cout << "Model threshold : " << model.threshold() << std::endl;
+
     // Load test data
     if (!test_df.readCSV("test.csv")) {
         std::cerr << "Failed to load test.csv" << std::endl;
@@ -66,6 +69,8 @@ int main() {
     // Make predictions on the test set
     Eigen::VectorXd predictions = model.predict(X_test);
 
+    Eigen::VectorXd predictions_proba = model.predict_proba(X_test);
+
     // Retrieve the "Name" column from test data
     std::vector<L::DataFrame::DataType> name_column = test_df.getColumn("Name");
 
@@ -73,17 +78,17 @@ int main() {
     std::cout << "Predictions:" << std::endl;
     for (int i = 0; i < predictions.size(); ++i) {
         std::string name = std::get<std::string>(name_column[i]);  // Assuming "Name" column is of type string
-        std::cout << "Name: " << name << ", prediction: " << predictions(i) << std::endl;
+        std::cout << "Name: " << name << ", prediction: " << predictions(i) << ", proba : " << predictions_proba(i) << std::endl;
     }
 
     Eigen::VectorXd y_true = test_df.selectColumns({target_column}).toMatrix().col(0);
 
-    L::RegressionMetrics metrics(predictions, y_true);
+    L::ClassificationMetrics metrics(predictions, y_true);
 
-    std::cout << "R² Score: " << metrics.r2Score() << std::endl;
-    std::cout << "Mean Absolute Error: " << metrics.meanAbsoluteError() << std::endl;
-    std::cout << "Mean Squared Error: " << metrics.meanSquaredError() << std::endl;
-    std::cout << "Root Mean Squared Error: " << metrics.rootMeanSquaredError() << std::endl;
+    std::cout << "Accuracy : " << metrics.accuracy() << std::endl;
+    std::cout << "Precision : " << metrics.precision() << std::endl;
+    std::cout << "Recall : " << metrics.recall() << std::endl;
+    std::cout << "F1 : " << metrics.f1_score() << std::endl;
 
     L::DataFrame predictions_dataframe = L::DataFrame(predictions, target_column);
     predictions_dataframe.toCsv("predictions.csv");

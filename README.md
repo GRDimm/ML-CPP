@@ -45,6 +45,14 @@ This project is a C++ library for basic machine learning and data manipulation.
   - Fit a logistic regression model to training data.
   - Predict output values for test data.
 
+### 6. ClassificationMetrics
+- **Description**: A class for computing classification evaluation metrics.
+- **Current Capabilities**:
+  - Calculate the accuracy.
+  - Calculate the precision.
+  - Calculate the recall.
+  - Calculate the F1 score.
+
 ## Getting Started
 
 1. **Clone the repository**:
