@@ -5,7 +5,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/bin/logistic_with_pca_option",  // Update as needed
+            "program": "${workspaceFolder}/build/bin/decision_tree_classifier",  // Update as needed
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

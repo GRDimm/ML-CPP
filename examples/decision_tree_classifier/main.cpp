@@ -1,7 +1,6 @@
 #include <iostream>
 #include "L/DataFrame.hpp"
-#include "L/PrincipalComponentAnalysis.hpp"
-#include "L/LogisticRegression.hpp"
+#include "L/DecisionTreeClassifier.hpp"
 #include "L/ClassificationMetrics.hpp"
 
 #include <numeric>
@@ -11,8 +10,6 @@
 int main() {
     L::DataFrame train_df;
     L::DataFrame test_df;
-
-    const bool use_PCA = true;
 
     // Load training data
     if (!train_df.readCSV("examples/datasets/persons/train.csv")) {
@@ -28,23 +25,14 @@ int main() {
     L::DataFrame features_df = train_df.selectColumns(feature_columns);
     Eigen::MatrixXd X_train = features_df.toMatrix();
 
-    if(use_PCA){
-        L::PrincipalComponentAnalysis train_PCA_object = L::PrincipalComponentAnalysis(X_train);
-
-        train_PCA_object.transform();
-
-        X_train = train_PCA_object.principal_components();
-    }
-
+    
     // Select target column and convert to Eigen vector
     L::DataFrame target_df = train_df.selectColumns({target_column});
     Eigen::VectorXd y_train = target_df.toMatrix().col(0);
 
     // Train the Linear Regression model
-    L::LogisticRegression model;
+    L::DecisionTreeClassifier model;
     model.fit(X_train, y_train);
-
-    std::cout << "Model threshold : " << model.threshold() << std::endl;
 
     // Load test data
     if (!test_df.readCSV("examples/datasets/persons/test.csv")) {
@@ -55,14 +43,6 @@ int main() {
     // Prepare test features and convert to Eigen matrix
     L::DataFrame test_features_df = test_df.selectColumns(feature_columns);
     Eigen::MatrixXd X_test = test_features_df.toMatrix();
-
-    if(use_PCA){
-        L::PrincipalComponentAnalysis test_PCA_object = L::PrincipalComponentAnalysis(X_test);
-
-        test_PCA_object.transform();
-
-        X_test = test_PCA_object.principal_components();
-    }
 
     // Make predictions on the test set
     Eigen::VectorXd predictions = model.predict(X_test);
