@@ -85,7 +85,6 @@ Example usage be found in `main.cpp`.
 
 ## Being implemented next
 
-- Classification Metrics
 - Decision Trees (Pruning, Bagging)
 - Random Forest
 - K-Nearest Neighbors (KNN)

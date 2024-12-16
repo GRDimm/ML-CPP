@@ -50,13 +50,12 @@ target_include_directories(L
 target_link_libraries(L PRIVATE Eigen3::Eigen)
 
 # Define the executable and link both L and Eigen
-add_executable(executable src/main.cpp)
+add_executable(logistic_with_pca_option examples/logistic_with_pca_option/main.cpp)
 
 # Specify include directories for the executable
-target_include_directories(executable 
+target_include_directories(logistic_with_pca_option 
     PUBLIC 
         ${PROJECT_SOURCE_DIR}/include
 )
 
-# Link libraries to the executable
-target_link_libraries(executable PRIVATE L Eigen3::Eigen)
+target_link_libraries(logistic_with_pca_option PRIVATE L Eigen3::Eigen)
