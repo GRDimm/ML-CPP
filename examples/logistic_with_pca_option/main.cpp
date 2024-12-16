@@ -90,6 +90,9 @@ int main() {
     std::cout << "Recall : " << metrics.recall() << std::endl;
     std::cout << "F1 : " << metrics.f1_score() << std::endl;
 
+    std::cout << "Confusion matrix : " << std::endl;
+    std::cout << metrics.confusion_matrix() << std::endl;
+
     L::DataFrame predictions_dataframe = L::DataFrame(predictions, target_column);
     predictions_dataframe.toCsv("predictions.csv");
 

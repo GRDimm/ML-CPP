@@ -66,6 +66,9 @@
         "future": "cpp",
         "valarray": "cpp",
         "variant": "cpp",
-        "dense": "cpp"
+        "dense": "cpp",
+        "charconv": "cpp",
+        "codecvt": "cpp",
+        "optional": "cpp"
     }
 }
